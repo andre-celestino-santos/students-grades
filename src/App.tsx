@@ -5,6 +5,7 @@ function App() {
   const [students, setStudents] = useState<Student[]>([]);
   const [name, setName] = useState<string>("");
   const [grade, setGrade] = useState<number>(0);
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
   function create() {
     const newStudent: Student = {
@@ -17,6 +18,8 @@ function App() {
     setStudents((prev) => [...prev, newStudent]);
     setName("");
     setGrade(0);
+
+    setDialogOpen(true);
   }
 
   function tableRowClick(id: number) {
@@ -25,6 +28,22 @@ function App() {
 
   return (
     <div className="container">
+      <dialog open={dialogOpen}>
+        <article>
+          <header>
+            <button
+              aria-label="Close"
+              rel="prev"
+              onClick={() => setDialogOpen(false)}
+            ></button>
+            <p>
+              <strong>Info</strong>
+            </p>
+          </header>
+          <p>Student created successfully</p>
+        </article>
+      </dialog>
+
       <h1>Studends Grades</h1>
       <form>
         <fieldset className="grid">
