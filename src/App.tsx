@@ -1,4 +1,5 @@
-import React from "react";
+import { approved } from "./model";
+import { students } from "./data";
 
 function App() {
   return (
@@ -32,32 +33,21 @@ function App() {
       <table className="striped">
         <thead>
           <tr>
+            <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Grade</th>
             <th scope="col">Approved</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">André</th>
-            <td>7</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <th scope="row">João</th>
-            <td>8</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <th scope="row">Maria</th>
-            <td>6</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th scope="row">Pedro</th>
-            <td>3</td>
-            <td>No</td>
-          </tr>
+          {students.map((student) => (
+            <tr key={student.id}>
+              <th scope="row">{student.id}</th>
+              <td>{student.name}</td>
+              <td>{student.grade}</td>
+              <td>{approved(student)}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
